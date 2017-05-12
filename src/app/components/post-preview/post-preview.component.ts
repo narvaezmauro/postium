@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Post } from "../../models/post";
+import { User } from 'app/models/user';
 
 @Component({
     selector: "post-preview",
@@ -9,6 +10,7 @@ import { Post } from "../../models/post";
 })
 export class PostPreviewComponent {
 
+    @Input() user: User;
     @Input() post: Post;
 
     /*------------------------------------------------------------------------------------------------------------------|
@@ -29,9 +31,13 @@ export class PostPreviewComponent {
 
 
     @Output() verPost: EventEmitter<Post> = new EventEmitter();
+    @Output() verAutor: EventEmitter<User> = new EventEmitter();
 
 
-   
+    abrirAutor(post: Post):void{
+        this.verAutor.emit(post.author);
+     }
+
     
     
     abrirPost(post: Post): void{

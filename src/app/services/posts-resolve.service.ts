@@ -19,7 +19,14 @@ export class PostsResolve implements Resolve<Post[]> {
          | a un usuario, llame a la función 'getUserPosts()' del servicio PostService. Recuerda    |
          | mirar en los parámetros de la ruta, a ver qué encuentras.                               |
          |-----------------------------------------------------------------------------------------*/
-
+         var id = route.params.userId;
+         console.log('resolve: ',id);
+        //  var id = 3;
+        
+        
+         if(id !== undefined){
+             return this._postService.getUserPosts(id);
+         }
         /*-----------------------------------------------------------------------------------------|
          | ~~~ Yellow Path ~~~                                                                     |
          |-----------------------------------------------------------------------------------------|

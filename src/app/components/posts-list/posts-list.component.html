@@ -18,4 +18,4 @@
 
 
 
-<post-preview *ngFor="let post of posts" [post]="post" (verPost)="despliegue($event)"></post-preview>
+<post-preview *ngFor="let post of posts" [post]="post" [user]="post.author" (verPost)="despliegue($event)" (verAutor)="despliegueAutor($event)" ></post-preview>

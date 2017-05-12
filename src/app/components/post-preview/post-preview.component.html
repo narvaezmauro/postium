@@ -10,7 +10,7 @@
         | Un clic sobre el autor debería enviar un evento al componente padre. |
         |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
         -->
-        <span class="name blink-font">{{ post.author.name }}</span>
+        <span class="name blink-font" (click)="abrirAutor(post)">{{ post.author.name }}</span>
         <!--
         |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
         | Blue Path                                                                     |

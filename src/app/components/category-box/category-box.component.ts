@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Category } from "../../models/category";
+import { Category } from '../../models/category';
 
 @Component({
     selector: "category-box",
@@ -10,6 +10,7 @@ import { Category } from "../../models/category";
 export class CategoryBoxComponent {
 
     @Input() categories: Category[];
+    
 
     /*-------------------------------------------------------------------------------------------------------------------|
      | ~~~ Yellow Path ~~~                                                                                               |
@@ -19,4 +20,10 @@ export class CategoryBoxComponent {
      | clic se realiza en el template de este componente, necesitas, además, un manejador para el mismo.                 |
      |-------------------------------------------------------------------------------------------------------------------*/
 
+     @Output() verCategoria: EventEmitter<Category> = new EventEmitter();
+
+     categorySelected(categories: Category): void{
+        //  console.log(categories.id);
+        this.verCategoria.emit(categories);
+     }
 }

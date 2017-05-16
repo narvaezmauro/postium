@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Post } from "../../models/post";
+import { Category } from '../../models/category';
 
 @Component({
     templateUrl: "post-details.component.html",
@@ -10,8 +11,12 @@ import { Post } from "../../models/post";
 export class PostDetailsComponent implements OnInit {
 
     post: Post;
+    category: Category;
 
-    constructor(private _activatedRoute: ActivatedRoute, private _router: Router) { }
+    constructor(
+            private _activatedRoute: ActivatedRoute,
+            private _router: Router
+        ) { }
 
     ngOnInit(): void {
         this._activatedRoute.data.forEach((data: { post: Post}) => this.post = data.post);
@@ -31,7 +36,7 @@ export class PostDetailsComponent implements OnInit {
      |---------------------------------------------------------------------------------------------------------------*/
 
      abrirColeccion(post: Post): void{
-         console.log("coleccion",post.author.id);
+        //  console.log("coleccion",post.author.id);
          this._router.navigate(['posts/users', post.author.id]);
      }
 
@@ -43,4 +48,8 @@ export class PostDetailsComponent implements OnInit {
      | pasando como parámetro el identificador de la categoría.                                                           |
      |--------------------------------------------------------------------------------------------------------------------*/
 
+
+     desplegarCategoria(categories: Category): void{
+         this._router.navigate(['posts/categories', categories.id])
+     }
 }

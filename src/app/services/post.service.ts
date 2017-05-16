@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@angular/core";
+import { Inject, Injectable, Input } from '@angular/core';
 import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
@@ -6,9 +6,12 @@ import "rxjs/add/operator/map";
 import { BackendUri } from "./settings.service";
 import { Post } from "../models/post";
 import * as moment from 'moment';
+import { Category } from '../models/category';
 
 @Injectable()
 export class PostService {
+
+    @Input() post: Post;
 
     constructor(
         private _http: Http,
@@ -86,10 +89,32 @@ export class PostService {
          |   - Filtro por fecha de publicación: publicationDate_lte=x (siendo x la fecha actual)            |
          |   - Ordenación: _sort=publicationDate&_order=DESC                                                |
          |--------------------------------------------------------------------------------------------------*/
-
+        var x = moment().valueOf();
         return this._http
-                   .get(`${this._backendUri}/posts`)
-                   .map((response: Response) => Post.fromJsonToList(response.json()));
+                   .get(`${this._backendUri}/posts?publicationDate_lte=${x}&_sort=publicationDate&_order=DESC`)
+                   .map((response: Response) => { 
+                        
+                        var lista = Post.fromJsonToList(response.json());
+                        // console.log(lista);
+                        lista = lista.filter((post: Post) =>{
+
+                            var find = post.categories.find((category: Category) =>{
+                                if(category.id === +id){
+                                    return true;
+                                }
+                                return false;
+                            });
+
+                            // console.log(find);
+                            if (find){
+                                return true;
+                            }
+                            return false;
+                            
+                        });
+                        return lista;                       
+
+                   });
     }
 
     getPostDetails(id: number): Observable<Post> {

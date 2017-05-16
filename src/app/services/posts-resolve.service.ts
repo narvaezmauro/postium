@@ -20,9 +20,7 @@ export class PostsResolve implements Resolve<Post[]> {
          | mirar en los parámetros de la ruta, a ver qué encuentras.                               |
          |-----------------------------------------------------------------------------------------*/
          var id = route.params.userId;
-         console.log('resolve: ',id);
-        //  var id = 3;
-        
+        //  console.log('resolve: ', id);
         
          if(id !== undefined){
              return this._postService.getUserPosts(id);
@@ -34,6 +32,14 @@ export class PostsResolve implements Resolve<Post[]> {
          | a una categoría, llame a la función 'getCategoryPosts()' del servicio PostService.      |
          | Recuerda mirar en los parámetros de la ruta, a ver qué encuentras.                      |
          |-----------------------------------------------------------------------------------------*/
+
+
+        id = route.params.categoryId; 
+         if(id !== undefined){
+            //  console.log(id);
+             return this._postService.getCategoryPosts(id);
+         }
+
 
         return this._postService.getPosts();
     }

@@ -62,10 +62,13 @@ export class PostFormComponent implements OnInit {
          | distintos elementos del formulario se correspondan con las propiedades de la clase Post.                    |
          |-------------------------------------------------------------------------------------------------------------*/
 
-        let post: Post = Post.fromJson(form.value);
-        post.likes = 0;
-        post.author = User.defaultUser();
-        post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
-        this.postSubmitted.emit(post);
+        if (form.valid){
+            
+            let post: Post = Post.fromJson(form.value);
+            post.likes = 0;
+            post.author = User.defaultUser();
+            post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
+            this.postSubmitted.emit(post);
+        }
     }
 }

@@ -7,7 +7,7 @@
 | referencia del formulario en él.                                                            |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 -->
-<form novalidate>
+<form #postForm="ngForm" (ngSubmit)="submitPost(postForm)" novalidate>
     <!--
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Purple Path                                                                                     |
@@ -18,8 +18,13 @@
     -->
     <input
         type="text"
+        ngModel
+        #titleRef="ngModel"
+        name="title"
         placeholder="Título"
-        class="u-full-width">
+        class="u-full-width"
+        required>
+
     <!--
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Purple Path                                                                                     |
@@ -29,9 +34,13 @@
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     -->
     <textarea
+        ngModel 
+        #introRef = "ngModel"
+        name="intro"
         placeholder="Introduce tu historia"
         class="u-full-width georgia-font"
-        autogrow></textarea>
+        autogrow
+        required></textarea>
     <!--
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Purple Path                                                                                     |
@@ -41,9 +50,13 @@
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     -->
     <textarea
+        ngModel 
+        #bodyRef = "ngModel"
+        name="body"
         placeholder="Cuenta tu historia"
         class="u-full-width georgia-font"
-        autogrow></textarea>
+        autogrow
+        required></textarea>
     <div>
         <div>
             <label (click)="setScheduling(false)">
@@ -73,5 +86,8 @@
     | válido. Para ello vas a necesitar acceder al 'FormGroup' del formulario. |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     -->
-    <button type="submit" class="button-primary u-pull-right">Publicar</button>
+    <button type="submit" 
+            class="button-primary u-pull-right" 
+            [disabled]="postForm.invalid"
+            >Publicar</button>
 </form>

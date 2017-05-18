@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Post } from "../../models/post";
 import { User } from 'app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
     selector: "post-preview",
@@ -13,6 +14,10 @@ export class PostPreviewComponent {
     @Input() user: User;
     @Input() post: Post;
 
+    constructor(
+        private _router: Router
+    ) { }
+
     /*------------------------------------------------------------------------------------------------------------------|
      | ~~~ Red Path ~~~                                                                                                 |
      |------------------------------------------------------------------------------------------------------------------|
@@ -20,7 +25,13 @@ export class PostPreviewComponent {
      | de eventos; la idea es enviar al componente padre el usuario sobre el cuál se ha hecho clic. Y puesto que dicho  |
      | clic se realiza en el template de este componente, necesitas, además, un manejador para el mismo.                |
      |------------------------------------------------------------------------------------------------------------------*/
+   
+    @Output() verAutor: EventEmitter<User> = new EventEmitter();
 
+    abrirAutor(post: Post):void{
+        this.verAutor.emit(post.author);
+    }
+   
     /*------------------------------------------------------------------------------------------------------------------|
      | ~~~ Green Path ~~~                                                                                               |
      |------------------------------------------------------------------------------------------------------------------|
@@ -31,20 +42,30 @@ export class PostPreviewComponent {
 
 
     @Output() verPost: EventEmitter<Post> = new EventEmitter();
-    @Output() verAutor: EventEmitter<User> = new EventEmitter();
 
-
-    abrirAutor(post: Post):void{
-        this.verAutor.emit(post.author);
-     }
-
-    
-    
     abrirPost(post: Post): void{
         this.verPost.emit(post);
     }
     
+
+
     plainTextToHtml(text: string): string {
         return `<p>${text.replace(/\n/gi, "</p><p>")}</p>`;
     }
+
+    /*--------------------------------------------------------------------------------------------------------------------|
+     | ~~~ Broken White Path ~~~                                                                                          |
+     |--------------------------------------------------------------------------------------------------------------------|
+     | Tratamos el click para abrir el formulario de edición del post recibido. La ruta a navegar es '/posts/editar',     |
+     | pasando como parámetro el identificador del post.                                                                  |
+     |                                                                                                                    |
+     |--------------------------------------------------------------------------------------------------------------------*/
+
+     editarPost(post: Post): void{
+        // console.log(post.id);
+        this._router.navigate(['edit-post', post.id]);
+     }
+
+
+     
 }

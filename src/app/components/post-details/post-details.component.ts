@@ -52,4 +52,17 @@ export class PostDetailsComponent implements OnInit {
      desplegarCategoria(categories: Category): void{
          this._router.navigate(['posts/categories', categories.id])
      }
+
+    /*--------------------------------------------------------------------------------------------------------------------|
+     | ~~~ Broken White Path ~~~                                                                                          |
+     |--------------------------------------------------------------------------------------------------------------------|
+     | Tratamos el click para abrir el formulario de edición del post recibido. La ruta a navegar es '/posts/editar',     |
+     | pasando como parámetro el identificador del post.                                                                  |
+     |                                                                                                                    |
+     |--------------------------------------------------------------------------------------------------------------------*/
+
+     editarPost(post: Post): void{
+        //  console.log(post.id);
+         this._router.navigate(['edit-post', post.id]);
+     }
 }

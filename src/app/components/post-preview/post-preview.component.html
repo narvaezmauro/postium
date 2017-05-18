@@ -18,10 +18,24 @@
         | Una vez tengas creado el pipe FromNowPipe, úsalo con la fecha de publicación. |
         |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
         -->
-
         <span class="date">{{ post.publicationDate | fromPublicationDate }}</span>
     </div>
+
+        <!--
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Broken White Path                                                             |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Un click sobre el texto editar llama a editarPost pasandole el post           |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        -->
+        <div>
+            <button (click)="editarPost(post)">Editar post</button> 
+
+        </div>
+   
 </div>
+
+
 <!--
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 | Green Path                                                          |

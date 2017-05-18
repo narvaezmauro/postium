@@ -20,6 +20,19 @@
         -->
         <span class="date">{{ post.publicationDate | fromPublicationDate }}</span>
     </div>
+
+        <!--
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Broken White Path                                                             |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Un click sobre el texto editar llama a editarPost pasandole el post           |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        -->
+        <div>
+            <button (click)="editarPost(post)">Editar post</button> 
+            
+        </div>
+
 </div>
 <div class="post">
     <h3>{{ post.title }}</h3>

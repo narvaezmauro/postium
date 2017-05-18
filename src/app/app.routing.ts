@@ -6,8 +6,9 @@ import { NewsComponent } from "./components/news/news.component";
 import { NewStoryComponent } from "./components/new-story/new-story.component";
 import { PostDetailsComponent } from "./components/post-details/post-details.component";
 import { UserPostsComponent } from "./components/user-posts/user-posts.component";
-import { PostDetailsResolve } from "./services/post-details-resolve.service";
-import { PostsResolve } from "./services/posts-resolve.service";
+import { PostDetailsResolve } from './services/post-details-resolve.service';
+import { PostsResolve } from './services/posts-resolve.service';
+import { EditStoryComponent } from './components/edit-story/edit-story.component';
 
 const routes: Routes = [
     {
@@ -34,6 +35,19 @@ const routes: Routes = [
     {
         path: "new-story",
         component: NewStoryComponent
+    },
+
+    /*--------------------------------------------------------------------------------------------------------------------|
+     | ~~~ Broken White Path ~~~                                                                                          |
+     |--------------------------------------------------------------------------------------------------------------------|
+     | Necesitamos un router para dirigirnos al path de editar el post.                                                   |
+     |--------------------------------------------------------------------------------------------------------------------*/
+    {
+        path: "edit-post/:postId",
+        component: EditStoryComponent,
+        resolve:{
+            posts: PostDetailsResolve
+        }
     },
     {
         path: "posts/:postId",

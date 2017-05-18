@@ -7,6 +7,16 @@
 | referencia del formulario en él.                                                            |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 -->
+
+<!--
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+| Broken White Path                                                                           |
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+| Tenemos que preparar el formulario para recibir un post ya completado para que nos lo       |
+| muestre y que podamos editarlo.                                                             |
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+-->
+
 <form #postForm="ngForm" (ngSubmit)="submitPost(postForm)" novalidate>
     <!--
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -16,15 +26,16 @@
     | el nombre que se ha definido en la entidad Post. Además, este campo debe ser obligatorio.       |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     -->
-    <input
-        type="text"
-        ngModel
-        #titleRef="ngModel"
-        name="title"
-        placeholder="Título"
-        class="u-full-width"
-        required>
-
+   
+        <input 
+            type="text"
+            [(ngModel)]="post.title"
+            #titleRef="ngModel"
+            name="title"
+            placeholder="Título"
+            class="u-full-width"
+            required>
+   
     <!--
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Purple Path                                                                                     |
@@ -34,7 +45,7 @@
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     -->
     <textarea
-        ngModel 
+        [(ngModel)]="post.intro" 
         #introRef = "ngModel"
         name="intro"
         placeholder="Introduce tu historia"
@@ -50,7 +61,7 @@
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     -->
     <textarea
-        ngModel 
+        [(ngModel)]="post.body" 
         #bodyRef = "ngModel"
         name="body"
         placeholder="Cuenta tu historia"

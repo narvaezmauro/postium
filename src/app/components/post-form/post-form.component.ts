@@ -3,6 +3,8 @@ import { FormGroup } from "@angular/forms";
 
 import { Post } from "../../models/post";
 import { User } from "../../models/user";
+import { ActivatedRoute } from '@angular/router';
+import { Category } from '../../models/category';
 
 @Component({
     selector: "post-form",
@@ -10,14 +12,45 @@ import { User } from "../../models/user";
     styleUrls: ["post-form.component.css"]
 })
 export class PostFormComponent implements OnInit {
-
+    
+    post: Post;
     nowDatetimeLocal: string;
     publicationDateScheduled: boolean = false;
+
+    constructor(private _activatedRoute: ActivatedRoute){}
 
     @Output() postSubmitted: EventEmitter<Post> = new EventEmitter();
 
     ngOnInit(): void {
         this.nowDatetimeLocal = this._formatDateToDatetimeLocal(new Date());
+
+        /*-------------------------------------------------------------------------------------------------------------|
+         | ~~~ Broken White Path ~~~                                                                                   |
+         |-------------------------------------------------------------------------------------------------------------|
+         | Recuperamos el post en caso de que sea un post para editar o lo inicializamos vacío en caso de que sea un   |
+         | post para crear una nueva historia.                                                                         |
+         |-------------------------------------------------------------------------------------------------------------*/
+
+
+        this._activatedRoute.data.forEach((data: {posts: Post}) =>{
+                this.post = data.posts;
+
+                // console.log(this.post);
+
+                if(this.post === undefined){
+                    this.post = {
+                        id: 0, 
+                        title:"", 
+                        intro: "", 
+                        body:"", 
+                        media:"", 
+                        publicationDate: this._getPostPublicationDate(this.nowDatetimeLocal),
+                        categories: Category[""],
+                        author: User.defaultUser(),
+                        likes: 0
+                    }
+                }
+        });
     }
 
     private _formatDateToDatetimeLocal(date: Date) {
@@ -68,7 +101,7 @@ export class PostFormComponent implements OnInit {
             post.likes = 0;
             post.author = User.defaultUser();
             post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
-            this.postSubmitted.emit(post);
+            this.postSubmitted.emit(this.post);
         }
     }
 }

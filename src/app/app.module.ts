@@ -31,6 +31,8 @@ import { PostService } from "./services/post.service";
 import { SearchBoxComponent } from "./components/search-box/search-box.component";
 import { UserPostsComponent } from "./components/user-posts/user-posts.component";
 import { FromNowPipe } from "app/pipes/from-now.pipe";
+import { EditStoryComponent } from './components/edit-story/edit-story.component';
+
 
 @NgModule({
     imports: [
@@ -48,6 +50,13 @@ import { FromNowPipe } from "app/pipes/from-now.pipe";
      | No olvides declarar FromNowPipe en el módulo. |
      |-----------------------------------------------*/
 
+    /*-----------------------------------------------|
+     | ~~~ Broken White Path ~~~                     |
+     |-----------------------------------------------|
+     | No olvides declarar EditStoryComponent en el  |
+     | módulo.                                       |
+     |-----------------------------------------------*/
+
     declarations: [
         AppComponent,
         AutoGrowDirective,
@@ -63,6 +72,7 @@ import { FromNowPipe } from "app/pipes/from-now.pipe";
         SearchBoxComponent,
         UserPostsComponent,
         FromNowPipe,
+        EditStoryComponent
     ],
     providers: [
         BackendUriProvider,

@@ -1,20 +1,25 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Resolve } from '@angular/router';
 
 import { Post } from "../../models/post";
 import { Category } from '../../models/category';
 import { User } from 'app/models/user';
+import { PostService } from '../../services/post.service';
+import { EditStoryComponent } from '../edit-story/edit-story.component';
+import { PostDetailsResolve } from '../../services/post-details-resolve.service';
 
 @Component({
     templateUrl: "post-details.component.html",
     styleUrls: ["post-details.component.css"]
 })
 export class PostDetailsComponent implements OnInit {
-
+   
+    _postSevice: PostService;
     post: Post;
     category: Category;
 
     constructor(
+            private _postService: PostService,
             private _activatedRoute: ActivatedRoute,
             private _router: Router
         ) { }
@@ -59,7 +64,6 @@ export class PostDetailsComponent implements OnInit {
      |--------------------------------------------------------------------------------------------------------------------|
      | Tratamos el click para abrir el formulario de edición del post recibido. La ruta a navegar es '/posts/editar',     |
      | pasando como parámetro el identificador del post. Solo deberíamos poder editar nuestros posts.                     |
-     |                                                                                                                    |
      |--------------------------------------------------------------------------------------------------------------------*/
 
      editarPost(post: Post): void{
@@ -68,4 +72,31 @@ export class PostDetailsComponent implements OnInit {
             this._router.navigate(['edit-post', post.id]);
         }
      }
+
+    /*--------------------------------------------------------------------------------------------------------------------|
+     | ~~~ Brick Red Path ~~~                                                                                             |
+     |--------------------------------------------------------------------------------------------------------------------|
+     | Tratamos el click para abrir registrar el like recibido. La ruta a navegar es '/posts/likear', pasando como        |
+     |  parámetro el identificador del post. Solo deberíamos poder likear una vez cada post.                              |
+     |--------------------------------------------------------------------------------------------------------------------*/
+
+     likearPost(post: Post){
+        //  this._router.navigate(['posts/likear', post.id]);
+
+        console.log(post.likers);
+        if(post.likers !== undefined){
+            for(var i = 0; i<this.post.likers.length; i++){
+                if((post.likers[i]) === User.defaultUser()){
+                    return;
+                }
+            }
+        }
+
+        this.post.likes = (post.likes + 1);
+        // this.post.likers[this.post.likers.length] = User.defaultUser();
+        
+        this._postService.confirmLike(post).subscribe();
+        
+     }  
+
 }

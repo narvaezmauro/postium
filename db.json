@@ -72,7 +72,7 @@
         "email": "ilove@runkle.com",
         "avatar": "assets/images/hank-moody.jpg"
       },
-      "likes": 0
+      "likes": 12
     },
     {
       "title": "Señor asiático se defiende de las acusaciones que dicen que no hace ni el huevo en todo el día",
@@ -253,42 +253,12 @@
       "id": 10
     },
     {
-      "title": "Un post",
-      "intro": "Intentaremos editar este post... lo conseguiremos?",
-      "body": "No conseguido...",
-      "publicationDate": 1495092554947,
-      "author": {
-        "id": 1,
-        "name": "KeepCoder",
-        "username": "keepcoder",
-        "email": "keepcoder@postium.com",
-        "avatar": "assets/images/keepcoder.jpg"
-      },
-      "likes": 0,
-      "id": 11
-    },
-    {
+      "id": 11,
       "title": "Rober",
-      "intro": "Vigila",
-      "body": "la publicacion",
-      "publicationDate": 1495106591414,
-      "author": {
-        "id": 1,
-        "name": "KeepCoder",
-        "username": "keepcoder",
-        "email": "keepcoder@postium.com",
-        "avatar": "assets/images/keepcoder.jpg"
-      },
-      "likes": 0,
-      "id": 12
-    },
-    {
-      "id": 13,
-      "title": "Una prueba",
-      "intro": "Ahora ya sabemos que pasa el post correctamente!",
-      "body": "Y no sólo eso... además ya modifica!",
+      "intro": "Me sirve para probar",
+      "body": "Pablo no es tan feo",
       "media": "",
-      "publicationDate": 1495107543335,
+      "publicationDate": 1495190114391,
       "author": {
         "id": 1,
         "name": "KeepCoder",
@@ -296,7 +266,7 @@
         "email": "keepcoder@postium.com",
         "avatar": "assets/images/keepcoder.jpg"
       },
-      "likes": 0
+      "likes": 6
     }
   ],
   "categories": [

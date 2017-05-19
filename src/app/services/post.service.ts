@@ -153,10 +153,17 @@ export class PostService {
          | en la respuesta HTTP obtenida.                                                   |
          |----------------------------------------------------------------------------------*/
 
-         console.log("post.service",post);
+        //  console.log("post.service",post);
         return this._http
                    .put(`${this._backendUri}/posts/${post.id}`, post)
                    .map((response: Response) => Post.fromJson(response.json()));
+    }
+
+    confirmLike(post: Post): Observable<Post>{
+        return this._http
+                   .put(`${this._backendUri}/posts/${post.id}`, post)
+                   .map((response: Response) => Post.fromJson(response.json()));
+    
     }
 
 }

@@ -47,7 +47,8 @@ export class PostFormComponent implements OnInit {
                         publicationDate: this._getPostPublicationDate(this.nowDatetimeLocal),
                         categories: Category[""],
                         author: User.defaultUser(),
-                        likes: 0
+                        likes: 0,
+                        likers: User[""]
                     }
                 }
         });
@@ -98,9 +99,9 @@ export class PostFormComponent implements OnInit {
         if (form.valid){
             
             let post: Post = Post.fromJson(form.value);
-            post.likes = 0;
-            post.author = User.defaultUser();
-            post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
+            this.post.likes = 0;
+            // post.author = User.defaultUser();
+            // post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
             this.postSubmitted.emit(this.post);
         }
     }

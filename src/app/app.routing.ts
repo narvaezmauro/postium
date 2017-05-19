@@ -49,6 +49,21 @@ const routes: Routes = [
             posts: PostDetailsResolve
         }
     },
+
+    // /*--------------------------------------------------------------------------------------------------------------------|
+    //  | ~~~ Brick Red Path ~~~                                                                                             |
+    //  |--------------------------------------------------------------------------------------------------------------------|
+    //  | Necesitamos un router para dirigirnos al path de likear el post.                                                   |
+    //  |--------------------------------------------------------------------------------------------------------------------*/
+    // {
+    //     path: "posts/likear/:postId",
+    //     component: EditStoryComponent,
+    //     resolve:{
+    //         posts: PostDetailsResolve
+    //     }
+    // },
+
+
     {
         path: "posts/:postId",
         component: PostDetailsComponent,

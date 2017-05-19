@@ -51,4 +51,8 @@
     <!--<category-box [categories]="post.categories" (click)="abrirCategorias(category)"></category-box>-->
     <category-box [categories]="post.categories" (verCategoria)="desplegarCategoria($event)"></category-box>
     
+    <div>
+        <button (click)="likearPost(post)" post.likes>{{post.likes}} - I like it!</button>         
+    </div>
+
 </div>

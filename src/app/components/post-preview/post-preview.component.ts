@@ -57,13 +57,15 @@ export class PostPreviewComponent {
      | ~~~ Broken White Path ~~~                                                                                          |
      |--------------------------------------------------------------------------------------------------------------------|
      | Tratamos el click para abrir el formulario de edición del post recibido. La ruta a navegar es '/posts/editar',     |
-     | pasando como parámetro el identificador del post.                                                                  |
+     | pasando como parámetro el identificador del post. Solo deberíamos poder editar nuestros posts.                     |
      |                                                                                                                    |
      |--------------------------------------------------------------------------------------------------------------------*/
 
      editarPost(post: Post): void{
         // console.log(post.id);
-        this._router.navigate(['edit-post', post.id]);
+        if(post.author.id === User.defaultUser().id){
+            this._router.navigate(['edit-post', post.id]);
+        }
      }
 
 
